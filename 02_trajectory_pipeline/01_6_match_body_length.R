@@ -107,7 +107,7 @@ if (length(csv_paths) == 0) {
   step2_root <- if (exists(".pipeline_dir", envir = .GlobalEnv, inherits = FALSE)) {
     file.path(get(".pipeline_dir", envir = .GlobalEnv), "STEP2_output")
   } else {
-    "02_trajectory_pipeline/STEP2_output"
+    file.path(get0(".repo_root", ifnotfound = ".."), "02_trajectory_pipeline/STEP2_output")
   }
   if (!dir.exists(step2_root)) {
     step2_root <- file.path(getwd(), "STEP2_output")
@@ -221,7 +221,7 @@ message(
 xlsx_path <- if (exists("SAMPLING_DATA_XLSX", envir = .GlobalEnv, inherits = FALSE)) {
   get("SAMPLING_DATA_XLSX", envir = .GlobalEnv)
 } else {
-  "data/sampling data GOT.xlsx"
+  file.path(get0(".repo_root", ifnotfound = ".."), "data/sampling data GOT.xlsx")
 }
 
 df <- readxl::read_excel(xlsx_path) %>%

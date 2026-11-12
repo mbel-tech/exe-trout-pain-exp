@@ -49,11 +49,11 @@ BL_MARGIN_CM <- 2.0
 
 # ── Standalone defaults (used only in interactive mode at bottom) ─────────────
 PROJECT_ROOT <- "."
-INPUT_PATH   <- file.path(PROJECT_ROOT, "datasets", "idmatcher_identity_correspondences.csv")
-OUTPUT_PATH  <- file.path(PROJECT_ROOT, "datasets", "idmatcher_annotated.csv")
-BL_CSV_PATH  <- file.path(PROJECT_ROOT, "Checked sessions GOT", "master_outputs",
+INPUT_PATH   <- file.path(PROJECT_ROOT, "data", "idmatcher_identity_correspondences.csv")
+OUTPUT_PATH  <- file.path(PROJECT_ROOT, "data", "idmatcher_annotated.csv")
+BL_CSV_PATH  <- file.path(PROJECT_ROOT, "data", "tracking_sessions", "master_outputs",
                           "morph", "master_bodylength_by_fish.csv")
-MATRICES_DIR <- file.path(PROJECT_ROOT, "datasets", "matrices")
+MATRICES_DIR <- file.path(PROJECT_ROOT, "data", "matrices")
 
 # ── Tiebreaker helpers (module-level; used inside annotate_idmatcher_scores_run) ──
 

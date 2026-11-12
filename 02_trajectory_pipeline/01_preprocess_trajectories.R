@@ -32,7 +32,7 @@ library(stats)
 # ensure_bboxes_for_session(..., force = TRUE).
 CONDA_EXE   <- Sys.getenv("CONDA_EXE", "conda")
 CONDA_ENV   <- "idtrackerai"
-BBOX_SCRIPT <- "01_tracking/extract_bounding_boxes.py"
+BBOX_SCRIPT <- file.path(get0(".repo_root", ifnotfound = ".."), "01_tracking/extract_bounding_boxes.py")
 
 DEFAULT_N_FISH_MAX      <- 4L
 DEFAULT_MAX_GAP_SECONDS <- 1

@@ -127,6 +127,20 @@ PHARMA_GROUPS <- c("Morphine", "Naloxone")
   }
 }, error = function(e) getwd())
 
+# Repository root = parent of this folder. Relative data paths in the CONFIG
+# section are resolved against it; the steps then run with the working
+# directory set to this folder, so that their outputs (STEP*_output,
+# STEP1_5) are written next to the pipeline scripts.
+.repo_root <- normalizePath(file.path(.pipeline_dir, ".."), winslash = "/", mustWork = FALSE)
+assign(".repo_root", .repo_root, envir = .GlobalEnv)
+.abs_path <- function(p) if (grepl("^([A-Za-z]:)?[/\\\\]", p)) p else file.path(.repo_root, p)
+PIPELINE_DATA_DIR    <- .abs_path(PIPELINE_DATA_DIR)
+TRIAL_SUMMARY_XLSX   <- .abs_path(TRIAL_SUMMARY_XLSX)
+SAMPLING_DATA_XLSX   <- .abs_path(SAMPLING_DATA_XLSX)
+REFERENCE_DOCX_PATH  <- .abs_path(REFERENCE_DOCX_PATH)
+IDMATCHER_COLAB_ROOT <- .abs_path(IDMATCHER_COLAB_ROOT)
+.wd_before_pipeline  <- setwd(.pipeline_dir)
+
 # Source shared output-management helpers so they are in GlobalEnv before any
 # step script runs. Defensive: silently skip if the file cannot be found.
 .helpers_path <- file.path(.pipeline_dir, "helpers/output_helpers.R")
@@ -453,3 +467,4 @@ cat("MASTER PIPELINE COMPLETE\n")
 cat("Total elapsed:   ", .total_elapsed, " s\n", sep = "")
 cat("Output folders created inside: ", getwd(), "\n")
 cat(strrep("=", 70), "\n")
+setwd(.wd_before_pipeline)

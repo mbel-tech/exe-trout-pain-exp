@@ -60,7 +60,7 @@ if (!exists(".got_make_output_dir", mode = "function")) {
 TRIAL_SUMMARY_PATH <- if (exists("TRIAL_SUMMARY_XLSX", envir = .GlobalEnv, inherits = FALSE)) {
   get("TRIAL_SUMMARY_XLSX", envir = .GlobalEnv)
 } else {
-  "data/trials summary GOT.xlsx"
+  file.path(get0(".repo_root", ifnotfound = ".."), "data/trials summary GOT.xlsx")
 }
 
 # ---- Canonical load policy ----
@@ -128,7 +128,7 @@ clipboard_dir <- function() {
     if (dir.exists(mo)) return(mo)
     return(p)
   }
-  default_dir <- "data/tracking_sessions"
+  default_dir <- file.path(get0(".repo_root", ifnotfound = ".."), "data/tracking_sessions")
   if (dir.exists(default_dir)) {
     mo <- file.path(default_dir, "master_outputs")
     if (dir.exists(mo)) {

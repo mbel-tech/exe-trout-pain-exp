@@ -1,10 +1,11 @@
-"""Figures 6 (aggression in time and space; file Figure_8_aggression_time_space.png) and
-7 (plasma cortisol and lactate; file Figure_9_plasma.png) of the article. The script also draws
+"""Figures 4 (school-level indicators that changed between intervals; file
+Figure_6_school_changed.png), 6 (aggression in time and space; file Figure_8_aggression_time_space.png)
+and 7 (plasma cortisol and lactate; file Figure_9_plasma.png) of the article. The script also draws
 two working figures that are not in the article (Figure_4_effect_summary.png, a summary of
 standardised trial-level effects, and Figure_6_school.png, all six school indicators).
-Usage: python 07_figures/figures_6_7_aggression_time_space_and_plasma.py <behaviour run dir>
+Usage: python 07_figures/figures_4_6_7_school_aggression_plasma.py <behaviour run dir>
        <plasma/monoamine run dir> <aggr grid csv> <aggression events csv> <out dir>
-Letters (compact letter display) are drawn in Figures 6 and 9 only for panels whose cells differ in
+Letters (compact letter display) are drawn in the school and plasma figures only for panels whose cells differ in
 the pipeline Tukey CLD (<run dir>/cld/); panels in which all cells share a letter carry none."""
 import sys, re, numpy as np, pandas as pd, matplotlib
 matplotlib.use("Agg"); import matplotlib.pyplot as plt

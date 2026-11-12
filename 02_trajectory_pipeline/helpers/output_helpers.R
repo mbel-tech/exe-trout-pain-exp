@@ -15,7 +15,7 @@
 #      - multiple matches  → stop listing all candidates (user must disambiguate)
 # =============================================================================
 resolve_dataset_path <- function(path,
-                                 fallback_dir = "data") {
+                                 fallback_dir = file.path(get0(".repo_root", ifnotfound = ".."), "data")) {
   if (is.null(path) || is.na(path) || !nzchar(trimws(path))) return(path)
   if (file.exists(path)) return(path)
 

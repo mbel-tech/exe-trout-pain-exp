@@ -45,9 +45,8 @@ supplementary file.
 | 2.9.2 Individual correlates of aggression (Supp. Table S13) | `06_robustness_and_associations/individual_aggression_correlates.py` | Within-trial permutation, 20 000 permutations |
 | 2.9.3 Robustness of significant effects (Supp. Table S12) | `06_robustness_and_associations/robustness_significant_effects.py` | |
 | Figure 3 (locomotion) | `07_figures/figure_3_locomotion.R` | Written as `Figure_5_*` (working number) |
-| Figure 4 (school structure) | `07_figures/figure_4_school_structure.py` | |
+| Figures 4 (school structure), 6 (aggression in time and space) and 7 (plasma) | `07_figures/figures_4_6_7_school_aggression_plasma.py` | Written as `Figure_6_school_changed.png`, `Figure_8_aggression_time_space.png`, `Figure_9_plasma.png` |
 | Figure 5 (aggressive events) | `07_figures/figure_5_aggression.py` | Written as `Figure_7_aggression.png` |
-| Figures 6 (aggression in time and space) and 7 (plasma) | `07_figures/figures_6_7_aggression_time_space_and_plasma.py` | Written as `Figure_8_*` and `Figure_9_*` |
 | Figure 8 (Dm serotonergic system) | `07_figures/figure_8_dm_serotonin.py` | Written as `Figure_10_Dm_serotonin.png` |
 
 Shared code: `05_statistics/shared/house_style.R` (figure style, number formatting, effect sizes,
@@ -103,8 +102,22 @@ Rscript 05_statistics/aggression_models_design_random_effects.R data output/aggr
 Rscript 05_statistics/aggression_hierarchy_and_timing.R
 Rscript 05_statistics/trial_level_anovas.R output/aggression_design_re data/GOT_monoamine_data_AUG2026.csv
 Rscript 05_statistics/link_behaviour_physiology.R
-# 6. Robustness and individual associations; 7. figures
-#    (each script prints its arguments: run folders from step 5)
+```
+
+Steps 6 and 7 take the run folders written in step 5 as arguments. Below, `BEH`, `ENDO`, `AGG`, `CORR` stand for
+the folders of `behaviour_models.R`, `plasma_monoamine_models.R` (`output/rosner_<timestamp>`),
+`aggression_models.R` (`output/aggression_output/<timestamp>`) and `link_behaviour_physiology.R`
+(`output/correlations_output/<timestamp>`). `RE=output/aggression_design_re`.
+
+```
+# 6. Robustness of significant effects and individual correlates of aggression
+python 06_robustness_and_associations/robustness_significant_effects.py BEH RE/grid_trial_interval_zone.csv ENDO/datasets/mono_DM.csv ENDO/reports/outlier_report.md output/robustness_significant_effects.csv
+python 06_robustness_and_associations/individual_aggression_correlates.py data CORR/datasets/c23_behaviour_gated.csv ENDO/datasets/mono_DM.csv ENDO/reports/outlier_report.md output/individual
+# 7. Figures
+Rscript 07_figures/figure_3_locomotion.R
+python 07_figures/figures_4_6_7_school_aggression_plasma.py BEH ENDO RE/grid_trial_interval_zone.csv data/aggression_annotated_june2026.csv output/figures
+python 07_figures/figure_5_aggression.py AGG output/figures/Figure_7_aggression.png RE/contrasts_refit.csv
+python 07_figures/figure_8_dm_serotonin.py RE/grid_trial_interval_zone.csv ENDO/datasets/mono_DM.csv ENDO/reports/outlier_report.md output/figures RE/contrasts_refit.csv ENDO/cld
 ```
 
 `behaviour_models.R` reads, by default, the trajectory-pipeline runs used for the article
@@ -112,11 +125,15 @@ Rscript 05_statistics/link_behaviour_physiology.R
 `GOT_STEP1_5_DIR` and `GOT_STEP1_5_STAMP` to the new folders. `GOT_ROOT` (default: the working directory) and
 `GOT_OUT_BASE` (default: `output/`) can be set the same way.
 
-**Note.** In this repository the scripts were reorganised and their hard-coded paths were replaced by
-paths relative to the repository root. The analysis code itself is unchanged. All R files parse, all
-Python files compile and the unit tests pass. Several scripts were re-run on the original data in the new
-layout and gave identical results (robustness tests, trial-level ANOVAs, aggression design random-effects
-refit). The whole chain has not been re-run end to end in this layout.
+**What changed for this archive, and what was checked.** The scripts were collected from the working
+repository, renamed and reorganised. Only file names, paths (hard-coded paths became paths relative to the
+repository root), command-line arguments, output locations, comments and the configuration of the aggression
+workflow (the configuration of the article run is now the only one) were changed. The model code, the
+statistical procedures and the figure code were not changed. All R files parse, all Python files compile and the
+unit tests pass. In the new layout, run on the original data, the following gave results identical to those
+reported: the robustness tests (Supp. Table S12), the trial-level ANOVAs, the aggression design random-effects
+refit, and Figures 4, 5, 6, 7 and 8 (pixel-identical images). The trajectory pipeline, the R statistics scripts
+for behaviour, aggression and plasma/monoamines, and Figure 3 have not been re-run in this layout.
 
 Code comments sometimes cite numbered rules of the internal analysis plan (for example "HANDOFF S7",
 "CONVENTIONS C12", "LOGS.md"). Those working documents are not part of this archive. The rules they refer

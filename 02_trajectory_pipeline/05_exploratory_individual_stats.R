@@ -334,7 +334,7 @@ REFERENCE_DOCX <- normalizePath(
   if (exists("REFERENCE_DOCX_PATH", envir = .GlobalEnv, inherits = FALSE))
     get("REFERENCE_DOCX_PATH", envir = .GlobalEnv)
   else
-    "data/reference_a4_portrait.docx",
+    file.path(get0(".repo_root", ifnotfound = ".."), "data/reference_a4_portrait.docx"),
   winslash = "/",
   mustWork = FALSE
 )
@@ -774,7 +774,7 @@ locate_input_data <- function() {
   candidate_dirs <- character(0)
 
   pipeline_data_dir <- if (exists("PIPELINE_DATA_DIR", envir = .GlobalEnv, inherits = FALSE))
-    get("PIPELINE_DATA_DIR", envir = .GlobalEnv) else "data/tracking_sessions"
+    get("PIPELINE_DATA_DIR", envir = .GlobalEnv) else file.path(get0(".repo_root", ifnotfound = ".."), "data/tracking_sessions")
   candidate_dirs <- c(candidate_dirs,
                        file.path(pipeline_data_dir, "dataset"),           # R1 canonical
                        file.path(pipeline_data_dir, "master_outputs"))    # legacy

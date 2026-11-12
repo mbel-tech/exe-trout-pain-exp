@@ -90,7 +90,7 @@ clipboard_dir <- function() {
     p <- get("PIPELINE_DATA_DIR", envir = .GlobalEnv)
     return(norm_path_win(p, mustWork = FALSE))
   }
-  default_dir <- "data/tracking_sessions"
+  default_dir <- file.path(get0(".repo_root", ifnotfound = ".."), "data/tracking_sessions")
   if (dir.exists(default_dir)) {
     message("clipboard_dir: using default data directory: ", default_dir)
     return(norm_path_win(default_dir, mustWork = FALSE))
@@ -305,7 +305,7 @@ TRIAL_SUMMARY_PATH <- if (exists("TRIAL_SUMMARY_XLSX", envir = .GlobalEnv, inher
   get("TRIAL_SUMMARY_XLSX", envir = .GlobalEnv)
 } else {
   resolve_dataset_path(
-    "data/trials summary GOT.xlsx"
+    file.path(get0(".repo_root", ifnotfound = ".."), "data/trials summary GOT.xlsx")
   )
 }
 
