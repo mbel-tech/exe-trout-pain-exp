@@ -1,0 +1,17 @@
+# Data and run outputs are not part of this repository
+data/
+output/
+03_aggression_events/results/
+02_trajectory_pipeline/STEP*_output/
+02_trajectory_pipeline/STEP1_5/
+02_trajectory_pipeline/STEP1_6*/
+
+# Local tooling
+.claude/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.Rhistory
+.RData
+.Rproj.user/
+.DS_Store

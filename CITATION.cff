@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article it accompanies and this archive."
+title: "Analysis code for the GOT experiment: exercise, exercise choice and coping with a nociceptive procedure in juvenile rainbow trout"
+type: software
+authors:
+  - family-names: Bellio
+    given-names: Martina
+license: MIT
+version: "1.0.0"
+date-released: "2026-11-12"
+keywords:
+  - rainbow trout
+  - exercise
+  - nociception
+  - idtracker.ai
+  - collective behaviour
+  - aggression
+  - monoamines
+  - mixed models
