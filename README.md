@@ -1,4 +1,4 @@
-# Analysis code: exercise, exercise choice and coping with a nociceptive procedure in juvenile rainbow trout (GOT experiment)
+# Analysis code for: Swimming exercise and coping with injection procedures in farmed rainbow trout: behavioural, endocrine and neurochemical responses
 
 This repository holds the code used to analyse the data of the GOT experiment. Juvenile rainbow trout
 (*Oncorhynchus mykiss*) were reared for 40 days with (Exercise) or without (Control) water flow. They then
@@ -9,7 +9,7 @@ The code is organised in the order the article describes the analysis. Section n
 (2.8.1, 2.9.2, …) refer to the Materials and Methods of the article. "Supplementary Material" refers to its
 supplementary file.
 
-> **Article:** *reference and DOI to be added on publication.*
+> **Article:** Bellio, M., et al. *Swimming exercise and coping with injection procedures in farmed rainbow trout: behavioural, endocrine and neurochemical responses*. Reference and DOI to be added on publication.
 > **Data:** not included in this repository. *Location of the data deposit to be added.*
 
 ## Contents

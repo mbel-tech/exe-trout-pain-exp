@@ -1,12 +1,15 @@
 cff-version: 1.2.0
 message: "If you use this code, please cite the article it accompanies and this archive."
-title: "Analysis code for the GOT experiment: exercise, exercise choice and coping with a nociceptive procedure in juvenile rainbow trout"
+title: "Analysis code for: Swimming exercise and coping with injection procedures in farmed rainbow trout: behavioural, endocrine and neurochemical responses"
 type: software
 authors:
   - family-names: Bellio
     given-names: Martina
+    affiliation: Norwegian University of Life Sciences
+    orcid: "https://orcid.org/0009-0005-5734-0262"
 license: MIT
 version: "1.0.0"
+repository-code: "https://github.com/mbel-tech/exe-trout-pain-exp"
 date-released: "2026-11-12"
 keywords:
   - rainbow trout

@@ -1,11 +1,24 @@
 {
-  "title": "Analysis code for the GOT experiment: exercise, exercise choice and coping with a nociceptive procedure in juvenile rainbow trout",
+  "title": "Analysis code for: Swimming exercise and coping with injection procedures in farmed rainbow trout: behavioural, endocrine and neurochemical responses",
   "upload_type": "software",
   "description": "R and Python code used to analyse the GOT experiment: trajectory processing of idtracker.ai tracking, identity matching, assignment of BORIS-scored aggression events, mixed models of behaviour, aggression, plasma and brain monoamines, robustness tests and the data figures of the article. See README.md for the map from article sections to scripts.",
   "creators": [
-    {"name": "Bellio, Martina"}
+    {
+      "name": "Bellio, Martina",
+      "affiliation": "Norwegian University of Life Sciences",
+      "orcid": "0009-0005-5734-0262"
+    }
   ],
   "license": "MIT",
   "access_right": "open",
-  "keywords": ["rainbow trout", "exercise", "nociception", "idtracker.ai", "collective behaviour", "aggression", "monoamines", "mixed models"]
+  "keywords": [
+    "rainbow trout",
+    "exercise",
+    "nociception",
+    "idtracker.ai",
+    "collective behaviour",
+    "aggression",
+    "monoamines",
+    "mixed models"
+  ]
 }
