@@ -10,12 +10,13 @@ The code is organised in the order the article describes the analysis. Section n
 supplementary file.
 
 > **Article:** Bellio, M., et al. *Swimming exercise and coping with injection procedures in farmed rainbow trout: behavioural, endocrine and neurochemical responses*. Reference and DOI to be added on publication.
-> **Data:** not included in this repository. *Location of the data deposit to be added.*
+> **Data:** not included in this repository. The data are deposited on Zenodo, doi:[10.5281/zenodo.24136844](https://doi.org/10.5281/zenodo.24136844) (CC BY 4.0). See "Running from the published data" below.
 
 ## Contents
 
 | Folder | Article section | What it does |
 |---|---|---|
+| `00_published_data/` | — | Converts the tables of the Zenodo data deposit into the input files of steps 5 to 7 |
 | `01_tracking/` | 2.8.1; Supp. "Automated identity tracking workflow", "Identity matching across intervals", "Body-length estimation" | Helpers around idtracker.ai: bounding-box extraction used for body-length estimation, and the Google Colab notebook that runs idmatcher.ai on the two intervals of each trial |
 | `02_trajectory_pipeline/` | 2.8.1, 2.8.2; Supp. "Trajectory processing in R", "Identity matching across intervals" | R pipeline from idtracker.ai trajectories to individual and school-level indicators: preprocessing (jump rejection, gap interpolation ≤ 1 s, cm conversion, body length), identity-match annotation (Rules 1–3, Supp. Table SM1), body-length match to the sampled fish, individual kinematic indicators, school-level indicators (swaRm/swaRmverse) |
 | `03_aggression_events/` | 2.8.3; Supp. "Quantification of aggression events from BORIS annotations and idtracker.ai trajectories" | Python workflow that assigns each BORIS-scored aggression event to an attacker and a target (peak acceleration within ±1 s, projected end point, hybrid side filter) and to a zone |
@@ -124,6 +125,31 @@ python 07_figures/figure_8_dm_serotonin.py RE/grid_trial_interval_zone.csv ENDO/
 (`STEP6_output_20260821_124225`, `STEP1_5_20260821_122105`). After a new pipeline run, set `GOT_STEP6_DIR`,
 `GOT_STEP1_5_DIR` and `GOT_STEP1_5_STAMP` to the new folders. `GOT_ROOT` (default: the working directory) and
 `GOT_OUT_BASE` (default: `output/`) can be set the same way.
+
+### Running from the published data
+
+The Zenodo deposit holds tidy tables (`got_*.csv`, lower-case labels, empty cells for missing values, with a
+data dictionary), not the working files the scripts were written against. `00_published_data/prepare_inputs_from_deposit.py`
+converts the deposit into those files, with the file names, column names and labels the scripts expect:
+
+```
+python 00_published_data/prepare_inputs_from_deposit.py <unzipped deposit folder>
+export GOT_STEP6_DIR=02_trajectory_pipeline/STEP6_output/from_deposit/01_data
+export GOT_STEP1_5_DIR=02_trajectory_pipeline/STEP1_5/STEP1_5_deposit GOT_STEP1_5_STAMP=deposit
+```
+
+Then run step 5 without the `GOT_MONO_CSV=...` setting, and steps 6 and 7, as above. What this covers:
+
+- Steps 5 to 7 (all statistics, robustness tests, correlates and Figures 3 to 8) run from the deposit.
+- Steps 1 to 4 (tracking, trajectory pipeline, aggression-event extraction, sample-dataset build) need the raw
+  videos, trajectories, BORIS files and laboratory workbooks, which are not in the deposit; their outputs are.
+  The raw files are available from the author on request.
+- The deposit holds the monoamines of Dm and Rn only, so the Dl, Vv and POA models of
+  `plasma_monoamine_models.R` are skipped.
+- Checked: the converted inputs match the working files on every column the scripts use, and the behaviour,
+  aggression, plasma and Dm/Rn monoamine models give the same results as the original run. The one difference:
+  in four Dm/Rn samples DOPAC is 0 in the deposit but was blank in the workbook read by
+  `link_behaviour_physiology.R`, so the DOPAC correlations shift slightly (the H3 and H4 tests stay non-significant).
 
 **What changed for this archive, and what was checked.** The scripts were collected from the working
 repository, renamed and reorganised. Only file names, paths (hard-coded paths became paths relative to the

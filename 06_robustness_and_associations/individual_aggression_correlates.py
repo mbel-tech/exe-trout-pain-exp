@@ -10,6 +10,7 @@ Also tests trial-level aggression against mean body mass and body-mass variation
 import sys, re, numpy as np, pandas as pd
 from scipy import stats
 data, c23f, monof, outl, out = sys.argv[1:6]
+import os; os.makedirs(out, exist_ok=True)
 rng = np.random.default_rng(20261111)
 
 ev = pd.read_csv(f"{data}/aggression_annotated_june2026.csv")

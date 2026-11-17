@@ -88,7 +88,7 @@ BL_GATE_TIERS <- c("reliable", "conservative")
 ################################################################################
 
 ROOT <- "."
-DATA_DIR <- file.path(ROOT, "datasets")
+DATA_DIR <- file.path(ROOT, "data")
 EASY_OUT <- file.path(ROOT, "output")
 EFF_DIR  <- file.path(ROOT, "02_trajectory_pipeline")
 

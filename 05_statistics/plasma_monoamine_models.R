@@ -69,7 +69,7 @@ set.seed(20260608)
 # GOT_OUT_BASE) so the script runs from a worktree or a re-lettered drive.
 .env_or <- function(var, default) { v <- Sys.getenv(var, ""); if (nzchar(v)) v else default }
 GOT_ROOT  <- .env_or("GOT_ROOT", ".")
-DATA_DIR  <- .env_or("GOT_DATA_DIR", file.path(GOT_ROOT, "datasets"))
+DATA_DIR  <- .env_or("GOT_DATA_DIR", file.path(GOT_ROOT, "data"))
 PLASMA_XLSX <- file.path(DATA_DIR, "GOT glu_lac_cort updated march 2025.xlsx")
 # Monoamines are read from the repaired tidy dataset, NOT from
 # "monoamine concentration ALL GOT.xlsx": that workbook's DM 5-HT column is a
